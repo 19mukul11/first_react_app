@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Mukul is Learning React
+          Mukul is Learning React on Ubuntu
         </a>
       </header>
     </div>
