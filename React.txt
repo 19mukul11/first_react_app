@@ -1,0 +1,134 @@
+**** REACT BASICS ******
+
+ReactJS  is a library of Javascript. Used for developing efficient and fast UI.
+Single Page Applications.
+
+Developed and maintained by Facebook.
+
+
+********* CREATE FIRST REACT APP *****************
+
+CMD to create a new  react App      :  npx  create-react-app  my-app
+CMD to run app                      :  npm start
+Custom cmd to run                   :  change in package.json   
+                                       npm run my-app
+
+1) PROJECT DIRECTORY STRUCTURE
+````````````````````````````````
+    package.json  :- It is the main configuration file of the app. Contains the info of application and all packages. Most imp file of project.
+    It conatins all details of project, versions, dependencies etc.
+
+    package-lock.json :- It is a description file Contains info of all the packages of node modules folder in a tree STRUCTURE.
+
+    .gitignore :- File related with git.
+
+    src :- Main folder of tha app which contains the source code of app.
+
+    src/App.js :- File representing the app. A pre deault made component.
+
+    src/App.test.js :- USed for writing unit test cases
+
+    src/index.js :- The most imp file of react app. It is actually the entry point of react app. It is the first file which runs on start.
+
+    public :- Folder not related with react. mainly HTML content. Generally used for serving Static content ex. images media file etc.
+
+    public/index.html :- It is the by default web page of react shown.
+                        In it, there is a div with id='root'.
+                        React injects the dynamic content inside this root only.
+
+    node_modules :- It is the folder in which all the installed modules and packages are located.
+
+
+2) COMPONENTS 
+`````````````` 
+    In REACT, a component is basically a JS function which returns some HTML code. It represents a Component of a web page.
+    It is an independent piece of code that is defined once , and can be reused again and again.
+    Its name should always start with Capital letter.
+    return statement is must.
+
+    Basic Example : Defining a header component and using it in app.
+
+    Components/Header.js
+       
+        export function Header(){
+            return (<h1> THIS IS HEADER </h1>);
+        }
+
+    App.js
+
+        import Header from './Components/Header'
+
+        function App(){
+            return(<div>
+                <Header />      //rendering a component
+                <p>
+                    Some content
+                </p>
+            </div>);
+        }
+
+    index.js 
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        );
+ 
+    TYPES OF COMPONENTS
+    ```````````````````
+    Functional component :- A component defined by using a function.
+                            Ex. 
+
+                            function Header(){
+                                return(
+                                    <h1> HEADER </h1>
+                                );
+                            }
+                            export default Header;
+
+    Class component :- A component defined by using Class.
+                        Ex. 
+
+                        import React from 'react';
+
+                        class Footer extends React.Component{
+                            render(){
+                                return(
+                                    <h1> THIS IS FOOTER </h1>
+                                );
+                            }
+                        }
+
+3) JSX (Javascript XML)
+````````````````````````
+    Its a powerfull syntax, which allows us to write HTML code in React with easy way.
+    Without it we will have to do very tedious work Ex. 
+
+        function Header(){
+            return (
+                React.createElement(h1,null, 'HEADER COMPONENT')
+            );
+        } 
+
+        By using JSX, we not need to to above stuff.
+
+         function Header(){
+            return (
+               <h1> HEADER COMPONENT</h1>
+            );
+        } 
+
+        Rendering a component by JSX :- 
+
+            root.render(
+                <Header />
+            );
+
+
+
+
+
+    
+
