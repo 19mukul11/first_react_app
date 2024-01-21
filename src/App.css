@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+#header {
+  background-color: slateblue;
+  color: white;
+  padding: 20px 0;
+}
+
+#header h2 {
+  margin: 0;
+}

@@ -18,15 +18,15 @@ Custom cmd to run                   :  change in package.json
     package.json  :- It is the main configuration file of the app. Contains the info of application and all packages. Most imp file of project.
     It conatins all details of project, versions, dependencies etc.
 
-    package-lock.json :- It is a description file Contains info of all the packages of node modules folder in a tree STRUCTURE.
+    package-lock.json :- It is a description file Contains info of all the packages of node modules folder in a tree STRUCTURE. Contains version history and dependencies of all the used packages.
 
-    .gitignore :- File related with git.
+    .gitignore :- File related with git. It actually tells the GIT to ignore these specified files and folders  during commit.
 
     src :- Main folder of tha app which contains the source code of app.
 
     src/App.js :- File representing the app. A pre deault made component.
 
-    src/App.test.js :- USed for writing unit test cases
+    src/App.test.js :- USed for writing unit test cases. testing purpose.
 
     src/index.js :- The most imp file of react app. It is actually the entry point of react app. It is the first file which runs on start.
 
@@ -43,7 +43,7 @@ Custom cmd to run                   :  change in package.json
 `````````````` 
     In REACT, a component is basically a JS function which returns some HTML code. It represents a Component of a web page.
     It is an independent piece of code that is defined once , and can be reused again and again.
-    Its name should always start with Capital letter.
+    Its name should always start with Capital letter. It also has its state.
     return statement is must.
 
     Basic Example : Defining a header component and using it in app.
@@ -86,7 +86,9 @@ Custom cmd to run                   :  change in package.json
                                     <h1> HEADER </h1>
                                 );
                             }
-                            export default Header;
+                            export default Header;    
+                                 or   
+                                 export {Header, AdminHeader, UserHeader}   to export multiple Components
 
     Class component :- A component defined by using Class.
                         Ex. 
@@ -126,6 +128,19 @@ Custom cmd to run                   :  change in package.json
                 <Header />
             );
 
+4) Working of ReactJS
+```````````````````````
+    Whenever we perform any changes in the elements of DOM on any event, ideally entire DOM gets updated and is 
+    rendered again. But, it is a very costly operation if we do it again and again. Here, React comes in picture.
+    React maintains a lightweight version of actual(real) DOM called as Virtual DOM.
+    So, when changes are made to the UI, they are first applied to the virtual DOM. React then calculates the most efficient
+    way to update the actual DOM and applies only the necessary changes.
+
+    Reconciliation :- React's diffing algorithm, called reconciliation, is responsible for efficiently updating the DOM.
+    When, state of an element changes in the DOM, react first creates a new virtual DOM with the updated state of the respective 
+    elements. Then it compares it with the previous virtual DOM, to find out the differences between them. 
+    After, it is known to React about what portion has been changed, it applies just those specific changes to the Real DOM
+    without re-rendering the entire document.
 
 
 

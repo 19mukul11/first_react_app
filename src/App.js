@@ -1,10 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import {Header, AdminHeader} from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <AdminHeader />
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -15,9 +18,10 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Mukul is Learning React on Ubuntu
+          Mukul is Learning React on Ubuntu/ Windows
         </a>
-      </header>
+      </header> */}
+      <Footer />
     </div>
   );
 }
