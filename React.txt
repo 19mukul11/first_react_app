@@ -173,6 +173,69 @@ Custom cmd to run                   :  change in package.json
     without re-rendering the entire document.
 
 
+5) State in ReactJS
+````````````````````
+    A state is basically an object, which stores some data or informtion about the component. In layman terms, it represents the current
+    condition of the component. Its just like a simple object holding some data, which can be updated in response to event handlers,
+    server responses, prop changes or some programming logics.
+    Whenever, the state of a component is changed/updated React re-renders the component on browser, which helps in creating dynamic 
+    and interactive user interfaces.
+
+    State is immutable. When the state object is updated, the changes are not done in the actual state object, inplace a new copy of state is initialised
+    with the updated state values and it replaces the old object.
+
+    State has to be first initialised, and then later on updated accordingly for a specific component. State can be used in both the ways :-
+
+    (i) State in Functional Component :- useState hook is used to initialise a state in Functional component. It returns an array with
+                                        two elements: the current state value and a function to update it.
+
+        function Content(){
+            let [data, setState] = useState("Hello I am Java Dev!");   // STATE INITIALISATION
+    
+            function update(){
+                setState("Start ReactJS");     // UPDATING STATE
+            }
+
+            return (
+                <div>
+                    <h1>{data}</h1>
+                    <br />
+                    <button onClick={update}>
+                        Click Me
+                    </button>
+                </div>
+            );
+        }
+
+            Counter Example:
+
+                let [data, setState] = useState(1);
+        
+                function update(){
+                    setState(data+1);
+                }
+
+            Object example : 
+
+                let [data, setState] = useState({
+                                                id: 12712,
+                                                name: "mukul",
+                                                company: "Internshala",
+                                                ctc : 5.4,
+                                            });
+            
+                function update(){
+                    const obj = {
+                        id: 754,
+                        name: "virat kohli",
+                        company: "Entigrity",
+                        ctc : 7.2,
+                    };
+                    setState(obj);
+                }
+
+
+
 
 
     
