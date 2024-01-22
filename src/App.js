@@ -2,11 +2,13 @@ import logo from "./logo.svg";
 import "./App.css";
 import {Header, AdminHeader} from "./components/Header";
 import Footer from "./components/Footer";
+import Content from "./components/Content";
 
 function App() {
   return (
     <div className="App">
       <AdminHeader />
+      <Content />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

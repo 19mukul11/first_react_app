@@ -128,6 +128,36 @@ Custom cmd to run                   :  change in package.json
                 <Header />
             );
 
+    Displaying data in JSX : 
+
+        function AdminHeader(){
+            const admin = {
+                name : "Mukul Mahajan",
+                id : 1911, 
+            }
+
+            return(
+                <div id="header">
+                    <h2> THIS IS ADMIN HEADER </h2>
+                    <h5>Admin {admin.id} : {admin.name}</h5>
+                </div>
+            );
+        }
+
+    Conditional Rendering in JSX : 
+                                    let content;
+                                    if (isLoggedIn) {
+                                        content = <AdminPanel />;
+                                    } else {
+                                        content = <LoginForm />;
+                                    }
+
+                                    return (
+                                        <div>
+                                            {content}
+                                        </div>
+                                    );
+
 4) Working of ReactJS
 ```````````````````````
     Whenever we perform any changes in the elements of DOM on any event, ideally entire DOM gets updated and is 
