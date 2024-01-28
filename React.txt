@@ -158,6 +158,9 @@ Custom cmd to run                   :  change in package.json
                                         </div>
                                     );
 
+
+                Recommended way :      return {isLoggedIn ? <AdminPanel /> : <LoginForm />};
+
 4) Working of ReactJS
 ```````````````````````
     Whenever we perform any changes in the elements of DOM on any event, ideally entire DOM gets updated and is 
@@ -234,9 +237,282 @@ Custom cmd to run                   :  change in package.json
                     setState(obj);
                 }
 
+    (ii) State in Class Component :- 
 
+        class Content2 extends React.Component {
+            constructor(){
+                super();
+                this.state = {
+                    data : "Mukul",
+                };
+            }
+            update(){
+                this.setState({
+                    data: "Bhopal",
+                });
+            }
+            render(){
+                return (
+                    <div>
+                        <h2>Content 2 is {this.state.data}  Class Component</h2>
+                        <button onClick={this.update}>Click Me</button>
+                    </div>
+                );
+            };
+        }
 
+6) Props 
+``````````  
+    Props are sometimes abbreviated as "Properties". It is basically very similar to passing arguments in a function.
+    Prop is actally an object which holds some data, and is passed to the component while rendering.
 
+    It is a mechanism of passing data from parent component to child component.
+    To send props into a component, use the same syntax as HTML attributes:
+
+        <Student name={"Mukul"} />
+
+        function Student(props){
+            return(
+                <h1>
+                    Hello {props.name}
+                </h1>
+            );
+        }
+
+    Example :--- 
+
+        let student = {
+            id:19,
+            name: 'Mukul',
+            age: 23
+        }
+        <Student  data={student} />
+
+        function Student(props){
+            let student = props.student;
+
+            return(
+                <h2>{student.id} {student.name} {student.age}</h2>
+            );
+        }
+
+    React Props are read-only! You will get an error if you try to change their value. It can be changed only in the
+    source component. The component in which it is passed, their we cannot modify it.
+
+    Props in class component :-
+
+    <Student name={'Mukul'} />
+
+    class Student extends React.Component {
+        render(){
+            let name = this.props.name;
+            return(
+                <div>
+                    <h2>Helllow {name}</h2>
+                </div>
+            );
+        }
+    }
+
+    Passing function as Prop
+    ````````````````````````  
+    A function can also be passed as prop in a component. It can be helpfull when multiple components need to call a single 
+    function at times. So, we can define it in parent component and pass to child components.
+
+    App.js
+
+    function print(){
+        alert("Hello Mukul !");
+    }
+
+    return(
+        <div>
+            <Component data={print} />
+        </div>
+    );
+
+    Component.js
+
+        function Component(props){
+            return(
+                <button onClick={props.data}>CLICK ME</button>
+            );
+        }
+
+7) Inputs
+``````````
+    (i) Get value of input field on change
+
+        function print(input){
+            console.log(input.target.value);
+        }
+        <input type='text' onChange={print} />
+
+        For getting the input value on click of button, we can use state.
+
+    (ii) Handling Form Data
+    ````````````````````````````````
+    export default function Form(){
+        const [formData, setFormData] = useState({
+            name:null,
+            language:null,
+            password:null,
+            tnc:false,
+        });
+
+        function updateFormData(key,value){
+            switch(key){
+                case 'name':{
+                    setFormData({
+                        name : value,
+                        language : formData.language,
+                        password: formData.password,
+                        tnc: formData.tnc,
+                    });
+                    break;
+                }
+                case 'language':{
+                    setFormData({
+                        name : formData.name,
+                        language : value,
+                        password: formData.password,
+                        tnc: formData.tnc,
+                    });
+                    break;
+                }
+                case 'password':{
+                    setFormData({
+                        name : formData.name,
+                        language : formData.language,
+                        password: value,
+                        tnc: formData.tnc,
+                    });
+                    break;
+                }
+                case 'tnc':{
+                    setFormData({
+                        name : formData.name,
+                        language : formData.language,
+                        password: formData.password,
+                        tnc: value,
+                    });
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
+        function submitForm(e){
+            e.preventDefault();
+            if(formData.tnc){
+                alert(formData.name + ' ' + formData.language + ' ' + formData.password);
+            }else{
+                alert("Fill agree the TnC !!");
+            }
+        }
+
+        return(
+            <div>
+                <h2>{formData.name}</h2>
+                <h2>{formData.password}</h2>
+                <h2>{formData.language}</h2>
+                <h2>{formData.tnc}</h2>
+                <form onSubmit={submitForm}>
+                    <input type="text" placeholder="Name" value={formData.name} onChange={(e)=>updateFormData('name',e.target.value)}/>  <br /> <br />
+                    <select value={formData.language} onChange={(e)=>updateFormData('language',e.target.value)}>
+                        <option value="">--Select Language--</option>
+                        <option value="Java">Java</option>
+                        <option value="Python">Python</option>
+                        <option value="Javascript">Javascript</option>
+                    </select> <br /> <br />
+                    <input type="password" placeholder="Password" value={formData.password} onChange={(e)=>updateFormData('password',e.target.value)} /> <br /> <br />
+                    <input type="checkbox" value={formData.tnc}  onChange={(e)=>updateFormData('tnc',e.target.checked)} /> Agree Terms & Conditions <br /> <br />
+                    <button >Submit</button>
+                </form>
+            </div>
+        );
+    }
+
+    Input fields of a form can be handled by using multiple individual state objects.
+
+        const [name, setName] = useState('');
+        const [language, setLanguage] = useState('');
+        const [tnc, setTnc] = useState(false);
+
+        ex.   <input type="text" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/>
 
     
+    (iii) Basic Form Validation  : - >    check    Login.js    file
+
+
+8) LIFE CYCLE METHODS IN REACT_JS
+```````````````````````````````````
+    In React.js, lifecycle methods are methods that are called at different points in the lifecycle of a React component.
+    These methods allow you to perform specific actions or logic at different stages, such as when a component is
+    mounted, updated, or unmounted. 
+    The entire lifecycle of a component is divided into 3 phases :- 
+        Mounting, Updating and Unmounting.
+
+    (i) Mounting :-  It means adding a component to the DOM. It has following life cycle methods :-
+
+            constructor() : Used for initializing state and binding event handlers. Envoked as the first method when a 
+                            component is mounted. The constructor() method is called with the props, as arguments, and
+                            you should always start by calling the super(props) before anything else, this will initiate
+                            the parent's constructor method and allows the component to inherit methods from its parent.
+
+            getDerivedStateFromProps() : Method is called right before rendering the element(s) in the DOM. This is the
+                                        natural place to set the state object based on the initial props.
+                                        It takes state as an argument, and returns an object with changes to the state.
+            
+            render() :  It presents or renders the component in DOM. It is called when the component is mounted for the first 
+                        time, and is called again Whenever the state of the component is changed.
+
+            componentDidMount() : This method is called after the component has been completely rendered to the DOM.
+                                Used for performing actions that require the DOM, such as calling API etc.
+                                Define it inside the class to check it.           
+
+    (ii) Updating :- A component is updated whenever there is a change in the component's state or prop.
+
+            getDerivedStateFromProps() : 
+            
+            shouldComponentUpdate() : It basically asks whether to re render a component or not. It blocks the envoking of 
+                                      render(). By default it returns false.
+                                      We need to explicitly return true to continue the rendering process. By this, we can conditionally,
+                                      decide whether to re-render a component or not.
+
+            render() : Called when the state or prop of the component is updated to rerender it.
+
+            componentDidUpdate(prevProps, prevState, snapshot) : It is envoked, whenever the state or prop of  component is updated. After the render()
+    
+    (iii) Unmounting :- The next phase in the lifecycle is when a component is removed from the DOM. It has only one method.
+
+            componentWillUnmount() : It is called just before when the component is about to be removed from the DOM.
+
+
+9) HOOKS
+``````````
+    Hooks are basically some functions which allow Functional components to use a variety of features of class components
+    like state, lifecycle , pure components etc. It has following rules :-
+        Hooks can only be called inside functional components.
+        Hooks can only be called at the top level of a component.
+        Hooks cannot be conditional
+
+    They always start with name 'use'.  Ex- useState(), useEffect() etc. They cannot be used in class components.
+    Also, we cannot define a function in React starting with 'use' because it is reserved for hooks.
+
+    (i) useState() :- Used for implementing state in functional component. Takes initial state value as input and returns
+                      the state object and updating function.
+
+                        const [name,setName] = useState("Mukul");
+
+    (ii) useEffect() :- Is used to perform side effects in functional components. Side effects refer to operations that
+                        are not part of the component rendering but are necessary for tasks such as data fetching,
+                        manual DOM manipulations, connection/disconnection etc.
+                        useEffect accepts two arguments. The second argument is optional.
+
+                        useEffect(<callback_function>, <dependency>)
+
+                        callback_function is the effect which has to be performed, and dependency array is the list of dependencies
+                        on whose change, the following effect will run. 
 

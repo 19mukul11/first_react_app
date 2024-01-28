@@ -1,24 +1,22 @@
 import React from "react";
 import { useState } from "react";
 
-function Content(){
+function Content(props){
 
     let [data, setState] = useState({
         id: 12712,
         name: "mukul",
         company: "Internshala",
-        ctc : 5.4,
+        ctc : 81.6,
     });
     
     function update(){
-
         const obj = {
             id: 754,
             name: "kriti",
             company: "Entigrity",
-            ctc : 3.2,
+            ctc : 50.65,
         };
-
         setState(obj);
     }
 
@@ -29,7 +27,7 @@ function Content(){
             <h1>{data.company}</h1>
             <h1>{data.ctc}</h1>
             <br />
-            <button onClick={update}>
+            <button onClick={props.data}>
                 Click Me
             </button>
         </div>
