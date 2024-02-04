@@ -8,8 +8,9 @@ import Props from "./components/Props";
 import Student from "./components/Student";
 import Form from './components/Form';
 import Login from "./components/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LifeCycle from "./components/LifeCycle";
+import Bootstrap from "./components/Bootstrap";
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
     }
   ];
 
+    let [count, setCount] = useState(0);
+    let [data, setData] = useState(100);
   // let [name,setState] = useState("Mukul Mahajan");
   // let [flag, setState] = useState(true);
 
@@ -44,14 +47,24 @@ function App() {
     alert("Hello Mukul Mahajan !");
   }
 
+  useEffect(()=>{
+    console.log("UseEffect Called !");
+  }, [data]);
+
   return (
     <div className="App">
       <Header></Header>
+      {/* <h1>{count}</h1>
+      <h1>{data}</h1> */}
 
+        {/* <button onClick={()=>setCount(count+1)}> Click here</button>
+        <button onClick={()=>setData(data+1)}> Click here 2</button> */}
+
+        <Bootstrap></Bootstrap>
       {/* <Login></Login> */}
       {/* <Form></Form> */}
 
-    <LifeCycle></LifeCycle>
+    {/* <LifeCycle></LifeCycle> */}
       {/* <Content data={printData} /> */}
      
       {/* <Student data={name} />

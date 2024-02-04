@@ -506,13 +506,39 @@ Custom cmd to run                   :  change in package.json
 
                         const [name,setName] = useState("Mukul");
 
+                  IMPORTANT
     (ii) useEffect() :- Is used to perform side effects in functional components. Side effects refer to operations that
                         are not part of the component rendering but are necessary for tasks such as data fetching,
-                        manual DOM manipulations, connection/disconnection etc.
+                        manual DOM manipulations, connection/disconnection, cleanup code etc.
                         useEffect accepts two arguments. The second argument is optional.
 
                         useEffect(<callback_function>, <dependency>)
 
                         callback_function is the effect which has to be performed, and dependency array is the list of dependencies
                         on whose change, the following effect will run. 
+
+                        IMPORTANT :- 
+                            By using this hook, we tell our React Component, that it need to do something after the render. The callback function
+                            us the actually the 'effect', which needs to be performed.
+                            Also, by defining the useEffect inside the component allows it to access state and props of the component.
+
+                            By default, useEffect is envoked automatically after first render and also, when a state or prop is updated.
+                        
+                        let [count, setCount] = useState(0);
+                        let [data, setData] = useState(100);
+
+                        useEffect(()=>{
+                            console.log("UseEffect Called !");
+                        }, [data]);
+
+                        <button onClick={()=>setCount(count+1)}> Click here </button>
+                        <button onClick={()=>setData(data+1)}> Click here 2 </button>
+
+                        In the above example, the useEffect will run only when, the {data} state is updated. We can pass all the states or Props
+                        in the dependency array, on whose update the effect will run.
+
+
+10) REACT - BOOTSTRAP
+``````````````````````
+    React has some inbuild components for Bootstrap.
 
