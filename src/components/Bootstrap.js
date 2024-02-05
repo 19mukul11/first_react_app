@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Alert} from "react-bootstrap";
 
 function Bootstrap(){
     return(
@@ -14,6 +14,15 @@ function Bootstrap(){
                     <Col style={{backgroundColor:"Yellow"}} >Col 3</Col>
                 </Row>
             </Container>
+            <Button variant="primary">Primary</Button>{' '}
+            <Button variant="secondary">Secondary</Button>{' '}
+            <Button variant="success">Success</Button>{' '}
+            <Button variant="warning">Warning</Button>{' '}
+        <div>
+            <Alert key='success' variant="success">
+            This is a success alert—check it out!
+            </Alert>
+        </div>
         </div>
     );
 }

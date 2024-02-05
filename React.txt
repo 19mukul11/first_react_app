@@ -542,3 +542,9 @@ Custom cmd to run                   :  change in package.json
 ``````````````````````
     React has some inbuild components for Bootstrap.
 
+    <Button></Button>
+    <Container> <Row> <Col>
+    <Stack>
+
+11) 
+
