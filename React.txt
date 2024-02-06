@@ -544,7 +544,122 @@ Custom cmd to run                   :  change in package.json
 
     <Button></Button>
     <Container> <Row> <Col>
-    <Stack>
+    <Stack>  etc
 
-11) 
 
+11) Rendering Lists and Keys
+``````````````````````````````
+
+    For iterating over a list or array in React, we Generally use map() function of JS.
+    At every iteration, it receives each element of the list, from where it can be operated or directly returned.
+
+    const newArray = array.map((currentValue, index, array) => {
+                // Return the result of applying a function to each element
+                // currentValue: the current element being processed in the array
+                // index: the index of the current element
+                // array: the array being mapped
+            return /* transformed value based on currentValue, index, or array */;
+    });
+
+    const students = [
+        {
+            name : "mukul",
+            email : "mukul@gmail.com",
+            age: 23,
+        },
+        {
+            name : "rohit",
+            email : "rohit@gmail.com",
+            age: 34,
+        },
+        {
+            name : "virat",
+            email : "virat@gmail.com",
+            age: 34,
+        },
+    ];
+
+    return(
+        <div>
+            <h3>Rendering Lists</h3>
+            {
+                students.map(function(student){
+                    return(
+                        <h5>{student.name} {student.email}</h5>
+                    );
+                })
+            }
+        </div>
+    );
+
+    Keys :-  It is always a good practice to include a 'key' prop in each rendered element of the list. It helps react to uniquely identify 
+             each element during updating the DOM.
+
+                return(
+                    <div>
+                        {
+                            students.map(function(student, index){
+                                return(
+                                    <h5 key={index} >{student.name} {student.email}</h5>
+                                );
+                            })
+                        }
+                    </div>
+                );
+
+
+12) Using reusable component in map()
+``````````````````````````````````````
+    return(
+        <div>
+            {
+                students.map(function(student, index){
+                    return(
+                        <div key={index}>
+                            <Student data={student}/>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    );
+
+    -- Student.js
+
+    function Student(props){
+
+        const student = props.data;
+        return(
+            <div>
+                <h4>{student.name} {student.email} {student.age}</h4>
+            </div>
+        );
+    }
+
+
+13) Fragments
+````````````````
+    In React, every component returned should have a wrapper element. But, in many cases it was useless. 
+    Fragment is the new concept by which, we can wrap a child component without using an extra div or parent element.
+
+    ex.  <div> cannot come inside <tr>
+
+        return(
+            <>
+                <h4>Hello</h4>
+                <h4>Bye</h4>
+            </>
+        );
+
+        or 
+
+        return(
+            <React.Fragment>
+                <h4>Hello</h4>
+                <h4>Bye</h4>
+            </React.Fragment>
+        );
+
+
+14) LIFTING STATE UP
+`````````````````````````````

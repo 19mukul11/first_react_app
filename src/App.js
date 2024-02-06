@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import LifeCycle from "./components/LifeCycle";
 import Bootstrap from "./components/Bootstrap";
 import UseEffect from "./components/UseEffect";
+import List from "./components/List";
 
 function App() {
 
@@ -48,9 +49,9 @@ function App() {
     alert("Hello Mukul Mahajan !");
   }
 
-  useEffect(()=>{
-    console.log("UseEffect Called !");
-  }, [data]);
+  // useEffect(()=>{
+  //   console.log("UseEffect Called !");
+  // }, [data]);
 
   return (
     <div className="App">
@@ -58,7 +59,9 @@ function App() {
       {/* <h1>{count}</h1>
       <h1>{data}</h1> */}
 
-        <UseEffect/>
+        {/* <UseEffect/> */}
+
+        <List />
 
         {/* <button onClick={()=>setCount(count+1)}> Click here</button>
         <button onClick={()=>setData(data+1)}> Click here 2</button> */}

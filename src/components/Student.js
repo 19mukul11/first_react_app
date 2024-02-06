@@ -1,11 +1,9 @@
-function Student(students){
+function Student(props){
 
-    console.log(students.data);
+    const student = props.data;
     return(
         <div>
-            <h2 style={{backgroundColor: 'green'}}>
-                Hello {students.data}
-            </h2>
+            <h4>{student.name} {student.email} {student.age}</h4>
         </div>
     );
 }
