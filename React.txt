@@ -662,4 +662,96 @@ Custom cmd to run                   :  change in package.json
 
 
 14) LIFTING STATE UP
-`````````````````````````````
+```````````````````````
+    Sending data from Child to Parent involves use of a function in parent component, which receives data from child.
+    It is passed to child as a prop, where in child it is invoked with passing some arguments in it.
+
+    >>>>>Parent
+    import Child from './Child';
+    import { useState } from 'react';
+
+    function Parent(){
+        const [name, setName] = useState("Mukul Parent");
+    
+        function parentFunction(data){
+            setName(data);
+        }
+        return(
+            <div>
+                <h1>Parent Component {name}</h1>
+                <Child data={parentFunction} />
+            </div>
+        );
+    }
+
+    >>>>>>> Child
+    import { useState } from "react";
+
+    function Child(props){
+        const [name,setName] = useState("Mukul Child");
+        return(
+            <div>
+                <h3>Child Component : {name} </h3>
+                <button onClick={()=>props.data(name)}>Click Me</button>
+            </div>
+        );
+    }
+
+15) PURE COMPONENTS
+`````````````````````
+    Pure Component is a class in React. If we make a component by extending it,  it will restrict the re rendering of
+    the component if the old state and new state to be set is same. It helps to optimize the performance as re rendering
+    is a costly operation.
+    To use it, just create the component by extending the  React.PureComponent class.
+
+16) useMemo HOOK
+`````````````````
+    It is basically a Hook, whose aim is to improve the performance of the app. It prevents the useless envoking of a function.
+    If a function depends only on stateA, but due to re-rendering, it will be called if any other state stateB is also changed.
+    This call will be useless. So, useMemo prevents such calls.
+
+    useMemo(function to memoize, [dependency array]);
+    In dependency array, we specify the states or props, on which this function is dependent.
+
+    function MemoHook(){
+        const [state1,setState1] = useState(1);
+        const [state2,setState2] = useState(10);
+
+        const calculate = useMemo(()=>{
+            console.log('calculating..........');
+            return(state1 * 2);
+        }, [state1]);
+
+        return(
+            <div>
+                <h3>use Memo using S1 = {state1}</h3>
+                <h3>use Memo using S2 = {state2}</h3>
+                <h3>Product is  {calculate}</h3>
+                <button onClick={()=>setState1(state1+1)}>Update State 1</button>
+                <button onClick={()=>setState2(state2+10)}>Update state 2</button>
+            </div>
+        );
+    }    
+
+17) Ref and useRef Hook
+`````````````````````````
+    useRef Hook is used to perform DOM manipulations over an element without using state or props.
+    Checkout RefHook.js
+
+18) Controlled and Uncontrolled Components
+```````````````````````````````````````````
+
+    Controlled Components :- A component which is controlled by state or props.
+
+    Uncontrolled Component :- A component which is controlled by UseREf  or directly by Javascript.
+
+                           useRef or  DOM api.
+
+19) HIGHER ORDER COMPONENT : it is a component which receives a component as a prop, and also returns a component.
+
+
+
+``````````````````````````````````````````
+20) REACT ROUTER
+``````````````````````````````````````````
+

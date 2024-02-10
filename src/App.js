@@ -13,6 +13,10 @@ import LifeCycle from "./components/LifeCycle";
 import Bootstrap from "./components/Bootstrap";
 import UseEffect from "./components/UseEffect";
 import List from "./components/List";
+import Parent from "./components/Parent";
+import Pure from "./components/Pure";
+import MemoHook from "./components/MemoHook";
+import RefHook from "./components/RefHook";
 
 function App() {
 
@@ -59,9 +63,15 @@ function App() {
       {/* <h1>{count}</h1>
       <h1>{data}</h1> */}
 
+      <RefHook></RefHook>
+
+      {/* <MemoHook></MemoHook> */}
+      {/* <Pure></Pure> */}
+      {/* <Parent /> */}
+
         {/* <UseEffect/> */}
 
-        <List />
+        {/* <List /> */}
 
         {/* <button onClick={()=>setCount(count+1)}> Click here</button>
         <button onClick={()=>setData(data+1)}> Click here 2</button> */}
