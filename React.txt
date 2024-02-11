@@ -750,8 +750,170 @@ Custom cmd to run                   :  change in package.json
 19) HIGHER ORDER COMPONENT : it is a component which receives a component as a prop, and also returns a component.
 
 
-
+            ------------  ROUTING  ------------
 ``````````````````````````````````````````
 20) REACT ROUTER
-``````````````````````````````````````````
+`````````````````````````````````````````
+    Its an important tool, which is used to handle routing in Reactjs.
+    Firstly, wrap our app inside a router wrapper. 
+
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+
+    Next creating pages :- 
+
+        function Home() {
+            return (
+                <div>
+                    <h1>HOME PAGE</h1>
+                </div>
+            );
+        }
+        export default Home;
+
+        function About() {
+            return (
+                <div>
+                    <h1>ABOUT PAGE</h1>
+                </div>
+            );
+        }
+        export default About;
+
+    In App.js :
+
+        return (
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                </Routes>
+            </div>
+        );
+
+
+       ** Creating Links for different Routes :---
+
+            function NavBar() {
+                return(
+                    <>
+                        <Link to='/'>Home</Link>          // NavLink  can also be used
+                        <Link to='/about'>About Us</Link>
+                        <Link to='/services'>Services</Link>
+                    </>
+                );
+            }
+
+
+        <Route  path="/*" element={<Page404 />} />   // FOR 404 NOT FOUND ROUTER
+
+        <Route  path="/*" element={<Navigate to='/' />} />   // REDIRECTION
+
+        useNavigate() Hook :-  The useNavigate hook is also part of the react-router-dom library in React, and it's used
+                               for programmatic navigation. It provides a function that allows you to navigate to a different location
+                               in your application.
+
+                               const navigate = useNavigate();
+
+                               if(!login){
+                                    navigate('/login');
+                               }
+
+21) PARAMS IN ROUTES
+``````````````````````
+    It can be implemented by useParams() hook.
+
+    Routes.
+        <Route path='/user/:name' />     //here :name is a dynamic parameter
+
+    function User(){
+        const {name} = useParams();
+        return(
+            <div>
+                <h1> This is {name} page.</h1>
+            </div>
+        );
+    }
+
+
+    Query Params :    params in this form    user?id=10&city='bhopal'
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    id = searchParams.get('id');
+    city = searchParams.get('city');
+
+    useLocation() Hook
+    ```````````````````
+    The useLocation hook allows you to access the current location object, which contains
+    information about the current URL ,like   path, state, hash value etc.
+
+    const data = useLocation();
+    console.log(data);
+
+        hash: ""
+        key: "default"
+        pathname: "/user/mukul/gurgaon"
+        search: "?id=10"
+        state: null
+
+***********************************************************************************************************
+**************************************************************************************************************
+
+
+22) DEALING WITH API's
+``````````````````````````
+    In Reactjs, We can call for an API on network via 3 different ways : 
+        i) fetch()
+        ii) XMLhttpRequest (AJAX call)
+        iii) Axios()
+
+    fetch() function in JS
+    ``````````````````````
+    It is an inbuilt function of Js, by which we can fire a request to another server on the network.
+    It returns a promise object, which needs to be resolved before use.
+
+
+        Example :- 
+        
+            fetch(url).then((response)=>{
+                response.json().then((result)=>{
+                    console.log(result);
+                });
+            }).catch((error)=>{
+                throw error;
+            });
+
+
+        function Get(){
+            const [data, setData] = useState([]);
+
+            useEffect(()=>{
+                fetch('https://cat-fact.herokuapp.com/facts').then((response)=>{
+                    response.json().then((result)=>{
+                        setData(result);
+                    });
+                });
+            }, []);
+    
+            return(
+                <div>
+                    <h2>Testing Get request</h2>
+                    <table border={3} cellSpacing={5}>
+                    {
+                        data.map((item)=>{
+                            return (<tr>
+                                <td>{item._id}</td>
+                                <td>{item.text}</td>
+                                <td>{item.user}</td>
+                            </tr>);
+                        })
+                    }
+                    </table>
+                </div>
+            );
+        }
+
+
 

@@ -17,6 +17,13 @@ import Parent from "./components/Parent";
 import Pure from "./components/Pure";
 import MemoHook from "./components/MemoHook";
 import RefHook from "./components/RefHook";
+import { Route, Routes, Router } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NavBar from "./pages/NavBar";
+import User from "./pages/User";
+import { Navigate } from "react-router-dom";
+import Get from "./api-test/Get";
 
 function App() {
 
@@ -60,10 +67,20 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
+        <Get />
+      
+      {/* <NavBar />
+      <Routes>
+        <Route  path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/user/:name/:city" element={<User />} />
+        <Route path="/*" element={<Navigate to='/' />} />
+      </Routes> */}
+
       {/* <h1>{count}</h1>
       <h1>{data}</h1> */}
 
-      <RefHook></RefHook>
+      {/* <RefHook></RefHook> */}
 
       {/* <MemoHook></MemoHook> */}
       {/* <Pure></Pure> */}
