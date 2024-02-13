@@ -900,7 +900,7 @@ Custom cmd to run                   :  change in package.json
             return(
                 <div>
                     <h2>Testing Get request</h2>
-                    <table border={3} cellSpacing={5}>
+                    <Table striped>
                     {
                         data.map((item)=>{
                             return (<tr>
@@ -910,10 +910,112 @@ Custom cmd to run                   :  change in package.json
                             </tr>);
                         })
                     }
-                    </table>
+                    </Table>
                 </div>
             );
         }
+
+
+    POST 
+    ```````
+    import { useEffect, useState } from "react";
+    import { Button } from "react-bootstrap";
+
+    function Post(){
+        const [name,setName] = useState("");
+        const [city,setCity] = useState("");
+        const [marks,setMarks] = useState("");
+
+        function submitForm(e){
+            e.preventDefault();
+            const data = {
+                "name": name,
+                "city": city,
+                "marks": marks
+            }
+
+            fetch("http://localhost:5000/students", {
+                method: "POST",
+                headers : {
+                    "Content-Type": "application/json"
+                },
+                body : JSON.stringify(data)
+            }).then((response)=>{
+                response.json().then((result)=>{
+                    console.log(result);
+                    setName("");
+                    setCity("");
+                    setMarks("");
+                    alert("Student has been saved Successfully !");
+                });
+            });
+        }
+
+        return(
+            <div>
+                <form onSubmit={submitForm}>
+                    <input type="text" placeholder="Name" name="name" value={name} onChange={(e)=>setName(e.target.value)} /> <br /> <br />
+                    <input type="text" placeholder="City" name="city" value={city} onChange={(e)=>setCity(e.target.value)} /> <br /> <br />
+                    <input type="number" placeholder="Marks" name="marks" value={marks} onChange={(e)=>setMarks(e.target.value)} /> <br /> <br />
+                    <Button type="submit" variant="primary">Save Student</Button>
+                </form>
+            </div>
+        );
+    }
+    export default Post;
+
+
+    DELETE
+    ```````````
+    function Delete(){
+        const [data, setData] = useState([]);
+    
+        function getList(){
+            fetch('http://localhost:5000/students').then((response)=>{
+                response.json().then((result)=>{
+                    setData(result);
+                });
+            });
+        }
+
+        function deleteStudent(sid){
+            fetch(`http://localhost:5000/students/${sid}`, {
+                method:"DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then((resp)=>{
+                return resp.json();
+            }).then((result)=>{
+                console.log(result);
+                getList();
+            });
+        }
+
+        useEffect(()=>{
+            getList();
+        },[]);
+
+        return(
+            <div>
+                <Table striped bordered hover size='sm'>
+                    <tbody>
+                    {
+                        data.map((item)=>{
+                            return (<tr key={item.id} >
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.city}</td>
+                                <td>{item.marks}</td>
+                                <td><Button variant="danger" onClick={(e)=>deleteStudent(item.id)} >Delete</Button></td>
+                            </tr>);
+                        })
+                    }
+                    </tbody>
+                </Table>
+            </div>
+        );
+    }
 
 
 

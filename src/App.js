@@ -24,6 +24,8 @@ import NavBar from "./pages/NavBar";
 import User from "./pages/User";
 import { Navigate } from "react-router-dom";
 import Get from "./api-test/Get";
+import Post from "./api-test/Post";
+import Delete from "./api-test/Delete";
 
 function App() {
 
@@ -67,8 +69,11 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-        <Get />
-      
+        
+        <Delete></Delete>
+        <Post></Post>
+        {/* <Get /> */}
+
       {/* <NavBar />
       <Routes>
         <Route  path="/" element={<Home />} />

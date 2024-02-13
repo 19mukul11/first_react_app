@@ -1,32 +1,36 @@
 import { useEffect, useState } from "react";
+import Table from 'react-bootstrap/Table';
 
 function Get(){
 
     const [data, setData] = useState([]);
 
     useEffect(()=>{
-        fetch('https://cat-fact.herokuapp.com/facts').then((response)=>{
+        fetch('http://localhost:5000/students').then((response)=>{
             response.json().then((result)=>{
-                // console.log(result[0].status);
+                console.log(result);
                 setData(result);
             });
         });
-    }, []);
+    },[]);
     
     return(
         <div>
             <h2>Testing Get request</h2>
-            <table border={3} cellSpacing={5}>
+            <Table striped bordered hover size='sm'>
+                <tbody>
             {
                 data.map((item)=>{
                     return (<tr>
-                        <td>{item._id}</td>
-                        <td>{item.text}</td>
-                        <td>{item.user}</td>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.city}</td>
+                        <td>{item.marks}</td>
                     </tr>);
                 })
             }
-            </table>
+            </tbody>
+            </Table>
         </div>
     );
 }
