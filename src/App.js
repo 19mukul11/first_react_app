@@ -26,6 +26,7 @@ import { Navigate } from "react-router-dom";
 import Get from "./api-test/Get";
 import Post from "./api-test/Post";
 import Delete from "./api-test/Delete";
+import Update from "./api-test/Update";
 
 function App() {
 
@@ -70,8 +71,9 @@ function App() {
     <div className="App">
       <Header></Header>
         
-        <Delete></Delete>
-        <Post></Post>
+        <Update></Update>
+        {/* <Delete></Delete>
+        <Post></Post> */}
         {/* <Get /> */}
 
       {/* <NavBar />
